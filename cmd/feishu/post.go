@@ -40,6 +40,10 @@ func runPostCmd(_ *cobra.Command, _ []string) {
 		at := feishu.NewAT(postVars.at)
 		line = append(line, at)
 	}
+	if len(postVars.imageKey) > 0 {
+		image := feishu.NewImage(postVars.imageKey, postVars.height, postVars.width)
+		line = append(line, image)
+	}
 	msg.AppendZHContent(line)
 
 	if _, err := client.Send(msg); err != nil {
@@ -53,6 +57,9 @@ type PostVars struct {
 	href     string
 	hrefText string
 	at       string
+	imageKey string
+	height   int
+	width    int
 }
 
 var postVars PostVars
@@ -64,4 +71,7 @@ func init() {
 	postCmd.Flags().StringVarP(&postVars.href, "href", "r", "", "href")
 	postCmd.Flags().StringVarP(&postVars.hrefText, "hrefText", "f", "", "href text")
 	postCmd.Flags().StringVarP(&postVars.at, "at", "a", "", "at user_id, if you want @all, just put `all`")
+	postCmd.Flags().StringVarP(&postVars.imageKey, "imageKey", "m", "", "imageKey")
+	postCmd.Flags().IntVarP(&postVars.height, "height", "g", 300, "image height")
+	postCmd.Flags().IntVarP(&postVars.width, "width", "w", 300, "image width")
 }
