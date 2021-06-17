@@ -23,7 +23,7 @@ test:
 	sh scripts/test.sh
 .PHONY: build
 build:
-	rm feishu
+	rm -f feishu
 	go build -o feishu cmd/main.go
 build-mac:
 	rm -f feishu feishu-darwin-amd64.zip
