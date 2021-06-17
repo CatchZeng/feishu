@@ -2,7 +2,6 @@ package feishu
 
 import (
 	"fmt"
-	"log"
 	"strconv"
 	"time"
 
@@ -49,8 +48,6 @@ func (d *Client) Send(message Message) (*Response, error) {
 	body := message.Body()
 	body["timestamp"] = strconv.FormatInt(timestamp, 10)
 	body["sign"] = sign
-
-	log.Print(body)
 
 	client := resty.New()
 	URL := fmt.Sprintf("%v%v", feishuAPI, d.AccessToken)

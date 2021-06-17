@@ -51,12 +51,14 @@ func structToMap(item interface{}) map[string]interface{} {
 
 		field := reflectValue.Field(i).Interface()
 		if tag != "" && tag != "-" {
+			if omitEmpty && reflectValue.Field(i).IsZero() {
+				continue
+			}
+
 			if v.Field(i).Type.Kind() == reflect.Struct {
 				res[tag] = structToMap(field)
 			} else {
-				if !(omitEmpty && reflectValue.Field(i).IsZero()) {
-					res[tag] = field
-				}
+				res[tag] = field
 			}
 		}
 	}
