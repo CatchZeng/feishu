@@ -14,3 +14,7 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 coverage.txt
+feishu-darwin-amd64.zip
+feishu-linux-amd64.zip
+feishu-windows-386.zip
+feishu-windows-amd64.zip

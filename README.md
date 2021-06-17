@@ -1,5 +1,11 @@
 # feishu
 
+![Go](https://github.com/CatchZeng/feishu/workflows/Go/badge.svg)
+[![codecov](https://codecov.io/gh/CatchZeng/feishu/branch/master/graph/badge.svg)](https://codecov.io/gh/CatchZeng/feishu)
+[![Go Report Card](https://goreportcard.com/badge/github.com/CatchZeng/feishu)](https://goreportcard.com/report/github.com/CatchZeng/feishu)
+[![Release](https://img.shields.io/github/release/CatchZeng/feishu.svg)](https://github.com/CatchZeng/feishu/releases)
+[![GoDoc](https://godoc.org/github.com/CatchZeng/feishu?status.svg)](https://pkg.go.dev/github.com/CatchZeng/feishu?tab=doc)
+
 > feishu 是飞书机器人的 go 实现。支持 **Docker、Jenkinsfile、命令行模式，module 模式**；支持**加签**安全设置，支持**链式语法**创建消息；支持**文本（text）、富文本（post）、图片（image）、群名片（share_chat）、消息卡片（interactive）** 消息类型。
 
 ## 文档
@@ -164,3 +170,7 @@ Flags:
 
 Use "feishu [command] --help" for more information about a command.
 ```
+
+## Stargazers
+
+[![Stargazers over time](https://starchart.cc/CatchZeng/feishu.svg)](https://starchart.cc/CatchZeng/feishu)
