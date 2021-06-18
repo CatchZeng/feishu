@@ -19,8 +19,6 @@ func NewTextMessage() *TextMessage {
 }
 
 func (m *TextMessage) SetText(text string) *TextMessage {
-	m.Content = Content{
-		Text: text,
-	}
+	m.Content.Text = text
 	return m
 }

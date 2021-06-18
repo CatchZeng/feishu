@@ -38,7 +38,7 @@
 
   <img src="https://p3-hera.byteimg.com/tos-cn-i-jbbdkfciu3/661d8ee4446c47bca5ac61bfb2ef1a6f~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
 
-- [ ] 图片（image）消息
+- [x] 图片（image）消息
 
   <img src="https://p1-hera.byteimg.com/tos-cn-i-jbbdkfciu3/5607aa65324e4e14bd94192ba81fe0b3~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
 
@@ -161,6 +161,7 @@ Usage:
 
 Available Commands:
   help        Help about any command
+  image       send image message with feishu robot
   post        send post message with feishu robot
   text        send text message with feishu robot
   version     feishu version

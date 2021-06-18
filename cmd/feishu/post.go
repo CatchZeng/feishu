@@ -71,7 +71,7 @@ func init() {
 	postCmd.Flags().StringVarP(&postVars.href, "href", "r", "", "href")
 	postCmd.Flags().StringVarP(&postVars.hrefText, "hrefText", "f", "", "href text")
 	postCmd.Flags().StringVarP(&postVars.at, "at", "a", "", "at user_id, if you want @all, just put `all`")
-	postCmd.Flags().StringVarP(&postVars.imageKey, "imageKey", "m", "", "imageKey")
+	postCmd.Flags().StringVarP(&postVars.imageKey, "imageKey", "m", "", "imageKey from https://open.feishu.cn/document/ukTMukTMukTM/uEDO04SM4QjLxgDN")
 	postCmd.Flags().IntVarP(&postVars.height, "height", "g", 300, "image height")
 	postCmd.Flags().IntVarP(&postVars.width, "width", "w", 300, "image width")
 }
