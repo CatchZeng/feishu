@@ -108,6 +108,31 @@ pipeline {
 }
 ```
 
+> 注：post 有两种用法，除了像上面使用一堆参数外，还可以使用 `post` 参数，直接将 `post json string` 传入，做到更灵活的配置。如下所示：
+
+```shell
+$ post='{
+  "zh_cn": {
+    "title": "项目更新通知",
+    "content": [
+      [
+        {
+          "tag": "text",
+          "text": "项目有更新: "
+        },
+        {
+          "tag": "a",
+          "text": "请查看",
+          "href": "http://www.example.com/"
+        }
+      ]
+    ]
+  }
+}
+'
+$ feishu post -t 6c3b0080-ea14-49e2-ac86-7f3783059960 -s k6usknqO1ZnazNa7Dz443d -p $post
+```
+
 ### 作为 module
 
 ```go

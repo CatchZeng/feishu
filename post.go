@@ -1,5 +1,10 @@
 package feishu
 
+import (
+	"encoding/json"
+	"log"
+)
+
 type PostMessage struct {
 	MsgType MsgType     `json:"msg_type"`
 	Content PostContent `json:"content"`
@@ -134,4 +139,32 @@ func NewImage(imageKey string, height, width int) Image {
 		Width:    width,
 	}
 	return t
+}
+
+type PostCMDMessage struct {
+	MsgType MsgType        `json:"msg_type"`
+	Content PostCMDContent `json:"content"`
+}
+
+func (m *PostCMDMessage) Body() map[string]interface{} {
+	m.MsgType = MsgTypePost
+	return structToMap(m)
+}
+
+type PostCMDContent struct {
+	Post map[string]interface{} `json:"post"`
+}
+
+func NewPostCMDMessage() *PostCMDMessage {
+	return &PostCMDMessage{}
+}
+
+func (m *PostCMDMessage) SetPost(post string) *PostCMDMessage {
+	var result map[string]interface{}
+	err := json.Unmarshal([]byte(post), &result)
+	if err != nil {
+		log.Print("SetPost err: ", err)
+	}
+	m.Content.Post = result
+	return m
 }

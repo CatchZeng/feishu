@@ -21,6 +21,14 @@ func runPostCmd(_ *cobra.Command, _ []string) {
 		return
 	}
 
+	if len(postVars.post) > 0 {
+		msg := feishu.NewPostCMDMessage().SetPost(postVars.post)
+		if _, err := client.Send(msg); err != nil {
+			log.E(err.Error())
+		}
+		return
+	}
+
 	msg := feishu.NewPostMessage()
 
 	if len(postVars.title) > 0 {
@@ -52,6 +60,7 @@ func runPostCmd(_ *cobra.Command, _ []string) {
 }
 
 type PostVars struct {
+	post     string
 	title    string
 	text     string
 	href     string
@@ -66,12 +75,13 @@ var postVars PostVars
 
 func init() {
 	rootCmd.AddCommand(postCmd)
-	postCmd.Flags().StringVarP(&postVars.title, "title", "i", "", "title")
-	postCmd.Flags().StringVarP(&postVars.text, "text", "e", "", "text")
-	postCmd.Flags().StringVarP(&postVars.href, "href", "r", "", "href")
-	postCmd.Flags().StringVarP(&postVars.hrefText, "hrefText", "f", "", "href text")
-	postCmd.Flags().StringVarP(&postVars.at, "at", "a", "", "at user_id, if you want @all, just put `all`")
-	postCmd.Flags().StringVarP(&postVars.imageKey, "imageKey", "m", "", "imageKey from https://open.feishu.cn/document/ukTMukTMukTM/uEDO04SM4QjLxgDN")
-	postCmd.Flags().IntVarP(&postVars.height, "height", "g", 300, "image height")
-	postCmd.Flags().IntVarP(&postVars.width, "width", "w", 300, "image width")
+	postCmd.Flags().StringVarP(&postVars.post, "post", "p", "", "post json string. The post parameter is used, other parameters will be invalid.")
+	postCmd.Flags().StringVarP(&postVars.title, "title", "i", "", "title in zh_cn")
+	postCmd.Flags().StringVarP(&postVars.text, "text", "e", "", "text in zh_cn")
+	postCmd.Flags().StringVarP(&postVars.href, "href", "r", "", "href in zh_cn")
+	postCmd.Flags().StringVarP(&postVars.hrefText, "hrefText", "f", "", "href text in zh_cn")
+	postCmd.Flags().StringVarP(&postVars.at, "at", "a", "", "at user_id in zh_cn, if you want @all, just put `all`")
+	postCmd.Flags().StringVarP(&postVars.imageKey, "imageKey", "m", "", "imageKey from https://open.feishu.cn/document/ukTMukTMukTM/uEDO04SM4QjLxgDN in zh_cn")
+	postCmd.Flags().IntVarP(&postVars.height, "height", "g", 300, "image height in zh_cn")
+	postCmd.Flags().IntVarP(&postVars.width, "width", "w", 300, "image width in zh_cn")
 }
