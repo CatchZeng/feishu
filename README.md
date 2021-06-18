@@ -46,7 +46,7 @@
 
   <img src="https://p9-hera.byteimg.com/tos-cn-i-jbbdkfciu3/ba60b1c2835a4950926bb86687e183a8~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
 
-- [ ] 消息卡片（interactive）消息
+- [x] 消息卡片（interactive）消息
 
   <img src="https://p6-hera.byteimg.com/tos-cn-i-jbbdkfciu3/4bf5072377cf4c02990ce28731634e6a~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
 
@@ -146,8 +146,53 @@ func main() {
 
 #### Demo
 
+##### Post
+
 ```shell
 feishu post -t 6cxxxx80-xxxx-49e2-ac86-7f378xxxx960 -s k6usknqxxxxazNxxxx443d -i 标题 -e 信息 -r https://makeoptim.com/ -f 链接文本 -a all
+```
+
+##### Interactive
+
+```shell
+$ card='{
+  "config": {
+    "wide_screen_mode": true,
+    "enable_forward": true
+  },
+  "elements": [
+    {
+      "tag": "div",
+      "text": {
+        "content": "**西湖**，位于浙江省杭州市西湖区龙井路1号，杭州市区西部，景区总面积49平方千米，汇水面积为21.22平方千米，湖面面积为6.38平方千米。",
+        "tag": "lark_md"
+      }
+    },
+    {
+      "actions": [
+        {
+          "tag": "button",
+          "text": {
+            "content": "更多景点介绍 :玫瑰:",
+            "tag": "lark_md"
+          },
+          "url": "https://www.example.com",
+          "type": "default",
+          "value": {}
+        }
+      ],
+      "tag": "action"
+    }
+  ],
+  "header": {
+    "title": {
+      "content": "今日旅游推荐",
+      "tag": "plain_text"
+    }
+  }
+}
+'
+$ feishu interactive -t 6cxxxx80-xxxx-49e2-ac86-7f378xxxx960 -s k6usknqxxxxazNxxxx443d -c $card
 ```
 
 #### Help
@@ -162,6 +207,7 @@ Usage:
 Available Commands:
   help        Help about any command
   image       send image message with feishu robot
+  interactive send interactive message with feishu robot
   post        send post message with feishu robot
   text        send text message with feishu robot
   version     feishu version
