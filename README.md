@@ -130,7 +130,7 @@ $ post='{
   }
 }
 '
-$ feishu post -t 6c3b0080-ea14-49e2-ac86-7f3783059960 -s k6usknqO1ZnazNa7Dz443d -p $post
+$ feishu post -t 6cxxxx80-xxxx-49e2-ac86-7f378xxxx960 -s k6usknqxxxxazNxxxx443d -p $post
 ```
 
 ### 作为 module
