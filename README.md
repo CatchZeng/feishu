@@ -42,7 +42,7 @@
 
   <img src="https://p1-hera.byteimg.com/tos-cn-i-jbbdkfciu3/5607aa65324e4e14bd94192ba81fe0b3~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
 
-- [ ] 群名片（share_chat）消息
+- [x] 群名片（share_chat）消息
 
   <img src="https://p9-hera.byteimg.com/tos-cn-i-jbbdkfciu3/ba60b1c2835a4950926bb86687e183a8~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
 
@@ -209,6 +209,7 @@ Available Commands:
   image       send image message with feishu robot
   interactive send interactive message with feishu robot
   post        send post message with feishu robot
+  shareChat   send shareChat message with feishu robot
   text        send text message with feishu robot
   version     feishu version
 
