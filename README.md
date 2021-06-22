@@ -108,7 +108,7 @@ pipeline {
 }
 ```
 
-> 注：post 有两种用法，除了像上面使用一堆参数外，还可以使用 `post` 参数，直接将 `post json string` 传入，做到更灵活的配置。如下所示：
+> 注：post 有两种用法，除了像上面使用一堆参数外，还可以使用 `post` 参数，直接将 [post json string](https://open.feishu.cn/document/ukTMukTMukTM/uMDMxEjLzATMx4yMwETM#1b8abd5d) 传入，做到更灵活的配置。如下所示：
 
 ```shell
 $ post='{
@@ -219,6 +219,8 @@ $ card='{
 '
 $ feishu interactive -t 6cxxxx80-xxxx-49e2-ac86-7f378xxxx960 -s k6usknqxxxxazNxxxx443d -c $card
 ```
+
+> 注：`card` 可以使用[飞书可视化搭建工具 cardbuilder](https://open.feishu.cn/tool/cardbuilder?from=custom_bot_doc) 自动生成。
 
 #### Help
 
