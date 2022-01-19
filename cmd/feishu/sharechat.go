@@ -1,7 +1,7 @@
 package feishu
 
 import (
-	"github.com/CatchZeng/feishu"
+	"github.com/CatchZeng/feishu/pkg/feishu"
 	"github.com/go-ecosystem/utils/log"
 	"github.com/spf13/cobra"
 )
@@ -28,7 +28,11 @@ func runShareChatCmd(_ *cobra.Command, _ []string) {
 
 	msg := feishu.NewShareChatMessage().
 		SetShareChatID(shareChatVars.shareChatID)
-	if _, err := client.Send(msg); err != nil {
+	req, _, err := client.Send(msg)
+	if debug {
+		log.I(req)
+	}
+	if err != nil {
 		log.E(err.Error())
 	}
 }

@@ -6,8 +6,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/CatchZeng/feishu"
 	"github.com/CatchZeng/feishu/configs"
+	"github.com/CatchZeng/feishu/pkg/feishu"
 	"github.com/spf13/viper"
 
 	"github.com/spf13/cobra"
@@ -64,12 +64,14 @@ func getSecret() string {
 }
 
 var accessToken, secret string
+var debug bool
 
 func init() {
 	cobra.OnInitialize(configs.InitConfig)
 
 	rootCmd.PersistentFlags().StringVarP(&accessToken, configs.AccessToken, "t", "", configs.AccessToken)
 	rootCmd.PersistentFlags().StringVarP(&secret, configs.Secret, "s", "", configs.Secret)
+	rootCmd.PersistentFlags().BoolVarP(&debug, "debug", "D", false, "debug")
 
 	if err := viper.BindPFlag(configs.AccessToken, rootCmd.PersistentFlags().Lookup(configs.AccessToken)); err != nil {
 		log.Print(err)

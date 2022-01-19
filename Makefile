@@ -2,14 +2,14 @@ SHELL := /bin/bash
 BASEDIR = $(shell pwd)
 
 APP_NAME=feishu
-APP_VERSION=1.0.0
+APP_VERSION=1.1.0
 IMAGE_NAME="catchzeng/${APP_NAME}:${APP_VERSION}"
 IMAGE_LATEST="catchzeng/${APP_NAME}:latest"
 
 all: mod fmt imports lint test
 first:
-	go get golang.org/x/tools/cmd/goimports
-	go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.39.0
+	go install golang.org/x/tools/cmd/goimports@latest
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 fmt:
 	gofmt -w .
 mod:
@@ -24,22 +24,22 @@ test:
 .PHONY: build
 build:
 	rm -f feishu
-	go build -o feishu cmd/main.go
+	go build -o feishu main.go
 build-mac:
 	rm -f feishu feishu-darwin-amd64.zip
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o feishu cmd/main.go
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o feishu main.go
 	zip feishu-darwin-amd64.zip feishu
 build-linux:
 	rm -f feishu feishu-linux-amd64.zip
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o feishu cmd/main.go
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o feishu main.go
 	zip feishu-linux-amd64.zip feishu
 build-win:
 	rm -f feishu.exe feishu-windows-amd64.zip
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o feishu.exe cmd/main.go
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o feishu.exe main.go
 	zip feishu-windows-amd64.zip feishu.exe
 build-win32:
 	rm -f feishu.exe feishu-windows-386.zip
-	CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -o feishu.exe cmd/main.go
+	CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -o feishu.exe main.go
 	zip feishu-windows-386.zip feishu.exe
 build-release:
 	make build-mac
@@ -49,7 +49,7 @@ build-release:
 	rm -f feishu feishu.exe
 build-docker:
 	sh build/package/build.sh ${IMAGE_NAME}
-push-docker: build-docker
+push-docker:
 	docker tag ${IMAGE_NAME} ${IMAGE_LATEST};
 	docker push ${IMAGE_NAME};
 	docker push ${IMAGE_LATEST};

@@ -1,8 +1,8 @@
-FROM golang:1.16.4-alpine as builder
+FROM golang:1.17.6-alpine as builder
 RUN mkdir /build
 ADD . /build/
 WORKDIR /build
-RUN go mod tidy && go build -o feishu cmd/main.go
+RUN go mod tidy && go build -o feishu main.go
 
 FROM alpine:3.7
 

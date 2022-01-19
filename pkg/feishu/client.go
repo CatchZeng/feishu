@@ -1,6 +1,7 @@
 package feishu
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
 	"time"
@@ -32,22 +33,28 @@ type Response struct {
 }
 
 // Send send message
-func (d *Client) Send(message Message) (*Response, error) {
+func (d *Client) Send(message Message) (string, *Response, error) {
 	res := &Response{}
 
 	if len(d.AccessToken) < 1 {
-		return res, fmt.Errorf("accesstoken is empty")
+		return "", res, fmt.Errorf("accesstoken is empty")
 	}
 
 	timestamp := time.Now().Unix()
 	sign, err := security.GenSign(d.Secret, timestamp)
 	if err != nil {
-		return res, err
+		return "", res, err
 	}
 
 	body := message.Body()
 	body["timestamp"] = strconv.FormatInt(timestamp, 10)
 	body["sign"] = sign
+
+	reqBytes, err := json.Marshal(body)
+	if err != nil {
+		return "", res, err
+	}
+	reqString := string(reqBytes)
 
 	client := resty.New()
 	URL := fmt.Sprintf("%v%v", feishuAPI, d.AccessToken)
@@ -60,12 +67,12 @@ func (d *Client) Send(message Message) (*Response, error) {
 		Post(URL)
 
 	if err != nil {
-		return nil, err
+		return reqString, nil, err
 	}
 
 	result := resp.Result().(*Response)
 	if result.Code != 0 {
-		return res, fmt.Errorf("send message to feishu error = %s", result.Msg)
+		return reqString, res, fmt.Errorf("send message to feishu error = %s", result.Msg)
 	}
-	return result, nil
+	return reqString, result, nil
 }

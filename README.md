@@ -28,27 +28,27 @@
 
 - [x] 支持加签
 
-  <img src="https://p6-hera.byteimg.com/tos-cn-i-jbbdkfciu3/fb5e1dd375684dd2b9b6037d86f862b0~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
+<img src="https://p6-hera.byteimg.com/tos-cn-i-jbbdkfciu3/fb5e1dd375684dd2b9b6037d86f862b0~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
 
 - [x] 文本（text）消息
 
-  <img src="https://p1-hera.byteimg.com/tos-cn-i-jbbdkfciu3/c9c86efea1754e269dbdc5517b4d958a~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
+<img src="https://p1-hera.byteimg.com/tos-cn-i-jbbdkfciu3/c9c86efea1754e269dbdc5517b4d958a~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
 
 - [x] 富文本（post）消息
 
-  <img src="https://p3-hera.byteimg.com/tos-cn-i-jbbdkfciu3/661d8ee4446c47bca5ac61bfb2ef1a6f~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
+<img src="https://p3-hera.byteimg.com/tos-cn-i-jbbdkfciu3/661d8ee4446c47bca5ac61bfb2ef1a6f~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
 
 - [x] 图片（image）消息
 
-  <img src="https://p1-hera.byteimg.com/tos-cn-i-jbbdkfciu3/5607aa65324e4e14bd94192ba81fe0b3~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
+<img src="https://p1-hera.byteimg.com/tos-cn-i-jbbdkfciu3/5607aa65324e4e14bd94192ba81fe0b3~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
 
 - [x] 群名片（share_chat）消息
 
-  <img src="https://p9-hera.byteimg.com/tos-cn-i-jbbdkfciu3/ba60b1c2835a4950926bb86687e183a8~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
+<img src="https://p9-hera.byteimg.com/tos-cn-i-jbbdkfciu3/ba60b1c2835a4950926bb86687e183a8~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
 
 - [x] 消息卡片（interactive）消息
 
-  <img src="https://p6-hera.byteimg.com/tos-cn-i-jbbdkfciu3/4bf5072377cf4c02990ce28731634e6a~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
+<img src="https://p6-hera.byteimg.com/tos-cn-i-jbbdkfciu3/4bf5072377cf4c02990ce28731634e6a~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
 
 ## 安装
 
@@ -62,10 +62,14 @@ docker pull catchzeng/feishu
 
 到 [releases](https://github.com/CatchZeng/feishu/releases/) 下载相应平台的二进制可执行文件，然后加入到 PATH 环境变量即可。
 
-### go get 安装
+### go install 安装
 
-```shell
-go get github.com/CatchZeng/feishu
+```sh
+# Go 1.16+
+go install github.com/CatchZeng/feishu@v1.1.0
+
+# Go version < 1.16
+go get -u github.com/CatchZeng/feishu@v1.1.0
 ```
 
 ## 使用方法
@@ -173,9 +177,16 @@ func main() {
 
 ##### Post
 
-```shell
+```sh
 feishu post -t 6cxxxx80-xxxx-49e2-ac86-7f378xxxx960 -s k6usknqxxxxazNxxxx443d -i 标题 -e 信息 -r https://makeoptim.com/ -f 链接文本 -a all
 ```
+
+```sh
+❯ feishu post -t 6cxxxx80-xxxx-49e2-ac86-7f378xxxx960 -s k6usknqxxxxazNxxxx443d -i 标题 -e 信息 -r https://makeoptim.com/ -f 链接文本 -a all -D
+{"content":{"post":{"zh_cn":{"content":[[{"tag":"text","text":"信息"},{"tag":"a","text":"链接文本","href":"https://makeoptim.com/"},{"tag":"at","user_id":"all"}]],"title":"标题"}}},"msg_type":"post","sign":"HR7kQhgapScmp/2bfLWdYmC7C6pUV3C/pQUiS3OQDIA=","timestamp":"1642561080"}
+```
+
+> -D 参数：打印发送的消息内容
 
 ##### Interactive
 
@@ -242,6 +253,7 @@ Available Commands:
 
 Flags:
   -t, --access_token string   access_token
+  -D, --debug                 debug
   -h, --help                  help for feishu
   -s, --secret string         secret
 
