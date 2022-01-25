@@ -1,8 +1,9 @@
 package feishu
 
 import (
+	"log"
+
 	"github.com/CatchZeng/feishu/pkg/feishu"
-	"github.com/go-ecosystem/utils/log"
 	"github.com/spf13/cobra"
 )
 
@@ -16,13 +17,13 @@ var imageCmd = &cobra.Command{
 
 func runImageCmd(_ *cobra.Command, _ []string) {
 	if len(imageVars.imageKey) < 1 {
-		log.E("imageKey is empty")
+		log.Fatal("imageKey is empty")
 		return
 	}
 
 	client, err := newClient()
 	if err != nil {
-		log.E(err.Error())
+		log.Fatal(err.Error())
 		return
 	}
 
@@ -30,10 +31,10 @@ func runImageCmd(_ *cobra.Command, _ []string) {
 
 	req, _, err := client.Send(msg)
 	if debug {
-		log.I(req)
+		log.Print(req)
 	}
 	if err != nil {
-		log.E(err.Error())
+		log.Fatal(err.Error())
 	}
 }
 

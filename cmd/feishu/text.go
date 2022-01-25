@@ -1,8 +1,9 @@
 package feishu
 
 import (
+	"log"
+
 	"github.com/CatchZeng/feishu/pkg/feishu"
-	"github.com/go-ecosystem/utils/log"
 	"github.com/spf13/cobra"
 )
 
@@ -16,13 +17,13 @@ var textCmd = &cobra.Command{
 
 func runTextCmd(_ *cobra.Command, _ []string) {
 	if len(textVars.text) < 1 {
-		log.E("text can not be empty")
+		log.Fatal("text can not be empty")
 		return
 	}
 
 	client, err := newClient()
 	if err != nil {
-		log.E(err.Error())
+		log.Fatal(err.Error())
 		return
 	}
 
@@ -30,10 +31,10 @@ func runTextCmd(_ *cobra.Command, _ []string) {
 		SetText(textVars.text)
 	req, _, err := client.Send(msg)
 	if debug {
-		log.I(req)
+		log.Print(req)
 	}
 	if err != nil {
-		log.E(err.Error())
+		log.Fatal(err.Error())
 	}
 }
 

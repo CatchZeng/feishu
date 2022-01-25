@@ -1,8 +1,9 @@
 package feishu
 
 import (
+	"log"
+
 	"github.com/CatchZeng/feishu/pkg/feishu"
-	"github.com/go-ecosystem/utils/log"
 	"github.com/spf13/cobra"
 )
 
@@ -17,7 +18,7 @@ var postCmd = &cobra.Command{
 func runPostCmd(_ *cobra.Command, _ []string) {
 	client, err := newClient()
 	if err != nil {
-		log.E(err.Error())
+		log.Fatal(err.Error())
 		return
 	}
 
@@ -25,10 +26,10 @@ func runPostCmd(_ *cobra.Command, _ []string) {
 		msg := feishu.NewPostCMDMessage().SetPost(postVars.post)
 		req, _, err := client.Send(msg)
 		if debug {
-			log.I(req)
+			log.Print(req)
 		}
 		if err != nil {
-			log.E(err.Error())
+			log.Fatal(err.Error())
 		}
 		return
 	}
@@ -60,10 +61,10 @@ func runPostCmd(_ *cobra.Command, _ []string) {
 
 	req, _, err := client.Send(msg)
 	if debug {
-		log.I(req)
+		log.Print(req)
 	}
 	if err != nil {
-		log.E(err.Error())
+		log.Fatal(err.Error())
 	}
 }
 
