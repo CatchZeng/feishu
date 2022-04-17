@@ -66,10 +66,10 @@ docker pull catchzeng/feishu
 
 ```sh
 # Go 1.16+
-go install github.com/CatchZeng/feishu@v1.1.1
+go install github.com/CatchZeng/feishu@v1.2.0
 
 # Go version < 1.16
-go get -u github.com/CatchZeng/feishu@v1.1.1
+go get -u github.com/CatchZeng/feishu@v1.2.0
 ```
 
 ## 使用方法
