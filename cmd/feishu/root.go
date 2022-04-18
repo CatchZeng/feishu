@@ -32,6 +32,8 @@ func newClient() (*feishu.Client, error) {
 	token := getAccessToken()
 	secret := getSecret()
 
+	log.Printf("token: %s , secret: %s", token, secret)
+
 	if len(token) < 1 {
 		return nil, errors.New("access_token can not be empty")
 	}

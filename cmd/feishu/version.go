@@ -9,7 +9,7 @@ import (
 
 const (
 	version   = "1.2.0"
-	buildTime = "2022/04/17"
+	buildTime = "2022/04/18"
 )
 
 // versionCmd represents the version command

@@ -26,6 +26,8 @@
 
 - [x] 支持[配置文件](https://github.com/CatchZeng/feishu#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
 
+- [x] 支持[环境变量](https://github.com/CatchZeng/feishu#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F)
+
 - [x] 支持加签
 
 <img src="https://p6-hera.byteimg.com/tos-cn-i-jbbdkfciu3/fb5e1dd375684dd2b9b6037d86f862b0~tplv-jbbdkfciu3-image:0:0.image" width = 50% />
@@ -81,6 +83,14 @@ go get -u github.com/CatchZeng/feishu@v1.2.0
 ```yaml
 access_token: "6cxxxx80-xxxx-49e2-ac86-7f378xxxx960"
 secret: "k6usknqxxxxazNxxxx443d"
+```
+
+### 环境变量
+
+```sh
+$ export ACCESS_TOKEN=6cxxxx80-xxxx-49e2-ac86-7f378xxxx960
+$ export SECRET=k6usknqxxxxazNxxxx443d
+$ feishu post -i 测试 -e 测试信息 -r https://makeblock.com/ -f 链接文本 -a all
 ```
 
 ### Docker
