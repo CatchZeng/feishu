@@ -30,7 +30,7 @@ build-darwin-amd64:
 	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o feishu main.go
 	zip feishu-darwin-amd64.zip feishu
 build-darwin-arm64:
-	rm -f feishu feishu-darwin-amd64.zip
+	rm -f feishu feishu-darwin-arm64.zip
 	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o feishu main.go
 	zip feishu-darwin-arm64.zip feishu
 build-linux:
