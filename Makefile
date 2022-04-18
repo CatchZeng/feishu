@@ -25,10 +25,14 @@ test:
 build:
 	rm -f feishu
 	go build -o feishu main.go
-build-mac:
+build-darwin-amd64:
 	rm -f feishu feishu-darwin-amd64.zip
 	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o feishu main.go
 	zip feishu-darwin-amd64.zip feishu
+build-darwin-arm64:
+	rm -f feishu feishu-darwin-amd64.zip
+	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o feishu main.go
+	zip feishu-darwin-arm64.zip feishu
 build-linux:
 	rm -f feishu feishu-linux-amd64.zip
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o feishu main.go
@@ -42,7 +46,8 @@ build-win32:
 	CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -o feishu.exe main.go
 	zip feishu-windows-386.zip feishu.exe
 build-release:
-	make build-mac
+	make build-darwin-amd64
+	make build-darwin-arm64
 	make build-linux
 	make build-win
 	make build-win32
