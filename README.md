@@ -68,10 +68,10 @@ docker pull catchzeng/feishu
 
 ```sh
 # Go 1.16+
-go install github.com/CatchZeng/feishu@v1.2.1
+go install github.com/CatchZeng/feishu@v1.3.0
 
 # Go version < 1.16
-go get -u github.com/CatchZeng/feishu@v1.2.1
+go get -u github.com/CatchZeng/feishu@v1.3.0
 ```
 
 ## 使用方法
@@ -88,8 +88,17 @@ secret: "k6usknqxxxxazNxxxx443d"
 ### 环境变量
 
 ```sh
-$ export ACCESS_TOKEN=6cxxxx80-xxxx-49e2-ac86-7f378xxxx960
-$ export SECRET=k6usknqxxxxazNxxxx443d
+$ export ACCESS_TOKEN="6cxxxx80-xxxx-49e2-ac86-7f378xxxx960"
+$ export SECRET="k6usknqxxxxazNxxxx443d"
+$ feishu post -i 测试 -e 测试信息 -r https://makeblock.com/ -f 链接文本 -a all
+```
+
+你也可以为环境变量设置一个**前缀**
+
+```sh
+$ export FEISHU_ENV_PREFIX="FEISHU_"
+$ export FEISHU_ACCESS_TOKEN="6cxxxx80-xxxx-49e2-ac86-7f378xxxx960"
+$ export FEISHU_SECRET="k6usknqxxxxazNxxxx443d"
 $ feishu post -i 测试 -e 测试信息 -r https://makeblock.com/ -f 链接文本 -a all
 ```
 
