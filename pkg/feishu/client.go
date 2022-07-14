@@ -18,7 +18,7 @@ type Client struct {
 	Secret      string
 }
 
-// NewClient new dingtalk client
+// NewClient new client
 func NewClient(accessToken, secret string) *Client {
 	return &Client{
 		AccessToken: accessToken,
@@ -30,6 +30,11 @@ func NewClient(accessToken, secret string) *Client {
 type Response struct {
 	Code int64  `json:"code"`
 	Msg  string `json:"msg"`
+	Data any    `json:"data"`
+
+	Extra         any    `json:"Extra"`
+	StatusCode    int64  `json:"StatusCode"`
+	StatusMessage string `json:"StatusMessage"`
 }
 
 // Send send message
@@ -37,7 +42,7 @@ func (d *Client) Send(message Message) (string, *Response, error) {
 	res := &Response{}
 
 	if len(d.AccessToken) < 1 {
-		return "", res, fmt.Errorf("accesstoken is empty")
+		return "", res, fmt.Errorf("accessToken is empty")
 	}
 
 	timestamp := time.Now().Unix()
@@ -72,7 +77,7 @@ func (d *Client) Send(message Message) (string, *Response, error) {
 
 	result := resp.Result().(*Response)
 	if result.Code != 0 {
-		return reqString, res, fmt.Errorf("send message to feishu error = %s", result.Msg)
+		return reqString, result, fmt.Errorf("send message to feishu error = %s", result.Msg)
 	}
 	return reqString, result, nil
 }
