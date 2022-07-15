@@ -181,7 +181,7 @@ func main() {
 	msg.SetZHTitle("测试富文本 @all").
 		AppendZHContent(line)
 
-	resp, err := client.Send(msg)
+	req, resp, err := client.Send(msg)
 	if err != nil {
 		log.Print(err)
 		return
