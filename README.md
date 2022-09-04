@@ -158,13 +158,17 @@ $ feishu post -t 6cxxxx80-xxxx-49e2-ac86-7f378xxxx960 -s k6usknqxxxxazNxxxx443d 
 
 ### 作为 module
 
+```
+go get github.com/CatchZeng/feishu
+```
+
 ```go
 package main
 
 import (
 	"log"
 
-	"github.com/CatchZeng/feishu"
+	"github.com/CatchZeng/feishu/pkg/feishu"
 )
 
 func main() {
